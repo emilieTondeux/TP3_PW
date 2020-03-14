@@ -84,8 +84,24 @@ function affiche_tab_description($ID, $tab_fr, $tab_en, $tab_original){
 }
 echo"////////////////////////QUESTION 1///////////////////////////<br/>";
 affiche_description_fr($ID, $tab_fr, $tab_en);
-echo"////////////////////////QUESTION 2///////////////////////////";
+echo"////////////////////////QUESTION 2///////////////////////////<br/>";
 affiche_tab_description($ID, $tab_fr, $tab_en, $tab_original);
+echo"////////////////////////QUESTION 10///////////////////////////<br/>";
+$JSON_video = tmdbget("movie/".$ID."/videos");
+$Tab_video = json_decode($JSON_video,TRUE);
+//var_dump($Tab_video);
+$List_vid = $Tab_video['results'];
+//var_dump($List_vid);
+foreach($List_vid as $vid) {
+	if($vid['type'] = 'Trailer') {
+		$link = "https://www.youtube.com/embed/".$vid['key'];
+		echo '<iframe width="560" height="315" src="' . $link . '" frameborder="0" allowfullscreen></iframe>';
+		echo "<br/>";
+		echo "<br/>";
+		echo "<br/>";
+		echo "<br/>";
+	}
+}
 
 
 
