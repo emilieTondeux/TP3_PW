@@ -1,3 +1,6 @@
+<html>
+    <link rel="stylesheet" href="podcast.css" />
+
 <?php
 require_once('vendor/dg/rss-php/src/Feed.php');
 $feed = new Feed;
