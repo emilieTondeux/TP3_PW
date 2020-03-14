@@ -13,7 +13,11 @@ $tab =$feed->loadRss("http://radiofrance-podcast.net/podcast09/rss_14312.xml", N
 				foreach ($tab->item as $item) {
 					echo "
 				<tr>
-					<td>". $item->pubDate."</td><td>. $item->title.</td><td>". $item->{'itunes : duration'}."</td>
+					<td>". $item->pubDate."</td>
+					<td>. $item->title.</td>
+					<td>Lecture</td>
+					<td>". $item->{"itunes:duration"}."</td>
+					<td><a href=\"".$item->enclosure['url']."\">Téléchargement</a></td>
 				</tr>
 		</table>";
 }
