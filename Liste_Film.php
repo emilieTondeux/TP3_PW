@@ -7,12 +7,14 @@ if(isset($_GET['id'])){
 } else {
     $ID_Actor = 109;
 }
+//Retourne le nom de l'acteur $ID
 function actor_name($ID) {
     $JSON_Name = tmdbget("person/".$ID);
     $Tab_Name = json_decode($JSON_Name,TRUE);
     return $Tab_Name['name'];
 }
 
+//Affiche la filmographie de l'acteur $ID_Actor
 function display_filmo($ID_Actor) {
     $JSON_Actor = tmdbget("person/".$ID_Actor."/credits");
     $Tab_Actor = json_decode($JSON_Actor,TRUE);
