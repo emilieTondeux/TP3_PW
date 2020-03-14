@@ -4,24 +4,28 @@
 	require "tp3-helpers.php";
 	$ID = 123;
 
+	//Requête dans les 3 langues demandées.
 	$JSON_original = tmdbget("movie/".$ID, null);
 	$JSON_fr = tmdbget("movie/".$ID, ['language' => 'fr']);
 	$JSON_en = tmdbget("movie/".$ID, ['language' => 'en']);
 
+	//Transformation en array.
 	$tab_original = json_decode($JSON_original, TRUE);
 	$tab_fr = json_decode($JSON_fr, TRUE);
 	$tab_en = json_decode($JSON_en, TRUE);
 
+	//Affiche les paramètre demandés pour un langage donné.
 	function affiche_description_fr($ID, $tab_fr, $tab_en){
 		echo "Titre : ".$tab_fr["title"]."<br/>";
 		echo "Titre original : ".$tab_en["original_title"]."<br/>";
-		if(isset($tab_en['tagline'])) {
+		if(isset($tab_en['tagline'])) { // On vérifie l'existence.
 		    echo "Tags : ".$tab_en['tagline']."<br/>";
 		}
 		echo "Description : ".$tab_fr['overview']."<br/>";
 		echo "Lien : <a href=\"https://www.themoviedb.org/movie/".$ID."\" >".$tab_en['title']." </a><br/><br/>" ;
 	}
 
+	//Affiche les paramètre demandés dans un tableau pour les 3 langages demandés.
 	function affiche_tab_description($ID, $tab_fr, $tab_en, $tab_original){
 		echo "<table>
 		  <th>
@@ -82,30 +86,30 @@
 		  </tr>
 		</table>";
 	}
-	echo"<h3>Question 1</h3><br/>";
-	affiche_description_fr($ID, $tab_fr, $tab_en);
-	echo"<h3>Question 2</h3><br/>";
-	affiche_tab_description($ID, $tab_fr, $tab_en, $tab_original);
-	echo "<br/><br/>";
-	echo"<h3>Question 10</h3><br/>";
-	$JSON_video = tmdbget("movie/".$ID."/videos");
-	$Tab_video = json_decode($JSON_video,TRUE);
-	//var_dump($Tab_video);
-	$List_vid = $Tab_video['results'];
-	//var_dump($List_vid);
-	foreach($List_vid as $vid) {
-		if($vid['type'] = 'Trailer') {
-			$link = "https://www.youtube.com/embed/".$vid['key'];
-			echo '<iframe width="560" height="315" src="' . $link . '" frameborder="0" allowfullscreen></iframe>';
-			echo "<br/>";
-			echo "<br/>";
-			echo "<br/>";
-			echo "<br/>";
+	function affiche_vid($ID) {
+		//Obtention du JSON
+		$JSON_video = tmdbget("movie/".$ID."/videos");
+		//Transformation en tableau
+		$Tab_video = json_decode($JSON_video,TRUE);
+		//Lecture des résultats
+		$List_vid = $Tab_video['results'];
+		foreach($List_vid as $vid) {
+			if($vid['type'] = 'Trailer') {
+				$link = "https://www.youtube.com/embed/".$vid['key'];
+				echo '<iframe width="560" height="315" src="' . $link . '" frameborder="0" allowfullscreen></iframe>';
+				echo "<br/>";
+				echo "<br/>";
+				echo "<br/>";
+				echo "<br/>";
+			}
 		}
 	}
-
-
-
-	 ?>
-
+	?>
+	<h3>Question 4</h3><br/>
+	<?php affiche_description_fr($ID, $tab_fr, $tab_en); ?>
+	<h3>Question 5</h3><br/>
+	<?php affiche_tab_description($ID, $tab_fr, $tab_en, $tab_original); ?>
+	<br/><br/>
+	<h3>Question 10</h3><br/>
+	<?php affiche_vid($ID); ?>
  </html>

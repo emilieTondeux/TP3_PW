@@ -1,0 +1,10 @@
+.general {
+    border:black solid 2px;
+    border-collapse: collapse;
+    font-weight: bold;
+}
+
+.actor {
+    border: black solid 1px;
+    font-weight: normal;
+}
