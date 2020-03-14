@@ -1,0 +1,21 @@
+table {
+    border: black solid 5px;
+    border-collapse: collapse;
+}
+
+td {
+    border: black solid 1px;
+}
+
+h3 {
+    text-decoration: underline;
+    position: relative;
+    margin: auto;
+    text-align: center;
+    padding: 10px;
+    border: black solid 2px;
+}
+
+.categ {
+    font-weight: bold;
+}
