@@ -22,8 +22,8 @@ $tab =$feed->loadRss("http://radiofrance-podcast.net/podcast09/rss_14312.xml", N
                     echo "</td>
 					<td>". $item->{"itunes:duration"}."</td>
 					<td><a href=\"".$item->enclosure['url']."\">Téléchargement</a></td>
-				</tr>
-		</table>";
-}
+				</tr>\n";
+			};
+			echo"	</table>";
 
  ?>
