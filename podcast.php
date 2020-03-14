@@ -14,8 +14,12 @@ $tab =$feed->loadRss("http://radiofrance-podcast.net/podcast09/rss_14312.xml", N
 					echo "
 				<tr>
 					<td>". $item->pubDate."</td>
-					<td>. $item->title.</td>
-					<td>Lecture</td>
+					<td>. $item->title.</td>";
+                    echo "<td>";
+                    $xmurl = $item->enclosure["url"];
+                    $url = $tab->toArray($xmurl);
+                    echo '<audio controls="controls"><source src='.$url.'> VotrenavigateurnesupportepaslabaliseAUDIO</audio>';
+                    echo "</td>
 					<td>". $item->{"itunes:duration"}."</td>
 					<td><a href=\"".$item->enclosure['url']."\">Téléchargement</a></td>
 				</tr>
